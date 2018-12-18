@@ -4,25 +4,33 @@ import ReactDOM from 'react-dom';
 // faker
 import faker from 'faker';
 
+// Components
+import CommentDetail from './CommentDetail';
+import ApprovalCard from './ApprovalCard';
+
 const App = () => {
   return (
     <div className="ui container comments">
-      <div className="comment">
-        <a href="/" className="avatar">
-          <img src={faker.image.avatar()} alt="avatar" />
-        </a>
-        <div className="content">
-          <a href="/" className="author">
-            {faker.name.firstName()}
-          </a>
-          <div className="metadata">
-            <span className="date">{faker.date.weekday()}</span>
-          </div>
-          <div className="text">{faker.company.catchPhrase()}</div>
-        </div>
-      </div>
+      <ApprovalCard>
+        <CommentDetail
+          avatar={faker.image.avatar()}
+          author="John"
+          date="15 Dec 2018"
+          content="Heyy Everyone how r u doin?"
+        />
+      </ApprovalCard>
+      <ApprovalCard>
+        <CommentDetail avatar={faker.image.avatar()} />
+      </ApprovalCard>
+      <ApprovalCard>
+        <h4>Warning!</h4>
+        Are u sure you want to do this?
+      </ApprovalCard>
     </div>
   );
 };
 
 ReactDOM.render(<App />, document.querySelector('#root'));
+
+// NOTE: Component hierarchy
+// App Component --> CommentDetail (App Component is a parent and CommentDetail is child component).
